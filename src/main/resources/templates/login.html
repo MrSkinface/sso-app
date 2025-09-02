@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <style>
+        .login-container { max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .login-btn { width: 100%; margin-top: 10px; padding: 10px; font-size: 16px; border-radius: 6px; }
+        .google-btn { background-color: #4285F4; color: white; border: none; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2>Login</h2>
+
+    <!-- Google SSO -->
+    <form th:action="@{/oauth2/authorization/google}" method="get">
+        <button type="submit" class="login-btn google-btn">Login with Google</button>
+    </form>
+
+    <!-- login errors -->
+    <div th:if="${param.error}" class="error">Wrong login/pass</div>
+</div>
+</body>
+</html>

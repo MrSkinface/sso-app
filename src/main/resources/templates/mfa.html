@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>MFA Verification</title>
+</head>
+<body>
+<h2>MFA Verification</h2>
+
+<div th:if="${!mfaEnabled}">
+
+  <p>Scan QR or enter manually</p>
+
+  <img th:src="'data:image/png;base64,' + ${qr}" alt="QR Code"/>
+</div>
+
+<form th:action="@{/mfa}" method="post">
+  <label for="code">TOTP:</label>
+  <input type="number" id="code" name="code" required/>
+  <button type="submit">Verify</button>
+</form>
+
+<p th:if="${error}" th:text="${error}" style="color:red;"></p>
+</body>
+</html>
